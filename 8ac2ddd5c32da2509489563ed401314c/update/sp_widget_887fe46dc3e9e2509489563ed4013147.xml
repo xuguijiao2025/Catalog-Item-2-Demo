@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function onLoad() {
+  // 初始化步骤状态
+  var currentStep = 1;
+  updateStepDisplay(currentStep);
+
+  // 下一步按钮点击事件
+  $('.next-step').on('click', function() {
+    if(validateCurrentStep(currentStep)) {
+      currentStep++;
+      updateStepDisplay(currentStep);
+    }
+  });
+
+  // 上一步按钮点击事件
+  $('.prev-step').on('click', function() {
+    if(currentStep > 1) {
+      currentStep--;
+      updateStepDisplay(currentStep);
+    }
+  });
+
+  // 步骤导航点击事件
+  $('.step-progress li').on('click', function() {
+    var step = $(this).index() + 1;
+    if(step < currentStep) { // 允许回退
+      currentStep = step;
+      updateStepDisplay(currentStep);
+    }
+  });
+}
+
+// 更新步骤显示
+function updateStepDisplay(step) {
+  // 更新导航状态
+  $('.step-progress li').removeClass('active');
+  $('.step-progress li:nth-child(' + step + ')').addClass('active');
+
+  // 切换内容面板
+  $('.step-pane').removeClass('active');
+  $('.step-pane[data-step="' + step + '"]').addClass('active');
+
+  // 控制按钮显示
+  $('.prev-step').toggle(step > 1);
+  $('.next-step').text(step === 5 ? '提交' : '下一步');
+}
+
+// 步骤验证
+function validateCurrentStep(step) {
+  var isValid = true;
+  $('#step' + step + ' .required').each(function() {
+    if(!g_form.getValue(this.id)) {
+      g_form.showErrorBox(this.id, '该字段为必填项');
+      isValid = false;
+    }
+  });
+  return isValid;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* 步骤导航条样式 */
+.step-progress {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+}
+
+.step-progress li {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  border-bottom: 3px solid #ddd;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.step-progress li.active {
+  border-color: #2a9fd6;
+  font-weight: bold;
+}
+
+/* 步骤内容容器 */
+.step-pane {
+  display: none;
+  padding: 20px;
+  border: 1px solid #eee;
+  margin-top: 15px;
+}
+
+.step-pane.active {
+  display: block;
+}
+
+/* 按钮容器 */
+.step-controls {
+  margin-top: 20px;
+  text-align: right;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data>{
+	/*"data": {
+		 "sometext": "world" 
+		 "sometext": "Set by Demo Data" */
+	}
+}</demo_data>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>new_hire_request</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>New Hire Request</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script/>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-16 05:42:19</sys_created_on>
+        <sys_id>887fe46dc3e9e2509489563ed4013147</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>New Hire Request</sys_name>
+        <sys_package display_value="Catalog Item-2 Demo" source="x_1755654_catalo_0">8ac2ddd5c32da2509489563ed401314c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Catalog Item-2 Demo">8ac2ddd5c32da2509489563ed401314c</sys_scope>
+        <sys_update_name>sp_widget_887fe46dc3e9e2509489563ed4013147</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-16 05:51:25</sys_updated_on>
+        <template><![CDATA[<div class="step-wizard-container">
+  <!-- 步骤导航 -->
+  <ul class="step-progress">
+    <li class="active">Step 1: 基本信息</li>
+    <li>Step 2: 设备选择</li>
+    <li>Step 3: 软件配置</li>
+    <li>Step 4: 交付信息</li>
+    <li>Step 5: 最终确认</li>
+  </ul>
+  
+  <!-- 步骤内容容器 -->
+  <div class="step-content">
+    <!-- 每个步骤的字段组 -->
+    <div 姓名>
+    <div class="step-pane active" data-step="1">
+      ${JSUtil.renderVariables('step1')}
+    </div>
+    <div class="step-pane" data-step="2">
+      ${JSUtil.renderVariables('step2')}
+    </div>
+    <div class="step-pane" data-step="3">
+      ${JSUtil.renderVariables('step3')}
+    </div>
+    <div class="step-pane" data-step="4">
+      ${JSUtil.renderVariables('step4')}
+    </div>
+    <div class="step-pane" data-step="5">
+      ${JSUtil.renderVariables('step5')}
+    </div>
+  </div>
+  
+  <!-- 导航按钮 -->
+  <div class="step-controls">
+    <button class="btn btn-default prev-step">上一步</button>
+    <button class="btn btn-primary next-step">下一步</button>
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

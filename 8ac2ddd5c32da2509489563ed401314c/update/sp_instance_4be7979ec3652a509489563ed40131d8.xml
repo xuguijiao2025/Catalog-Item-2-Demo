@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">4be7979ec3652a509489563ed40131d5</sp_column>
+        <sp_widget display_value="Catalog Item-2 Section">f6e7975ec3652a509489563ed40131d4</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-19 01:53:52</sys_created_on>
+        <sys_id>4be7979ec3652a509489563ed40131d8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Catalog Item-2 Demo" source="x_1755654_catalo_0">8ac2ddd5c32da2509489563ed401314c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Catalog Item-2 Demo">8ac2ddd5c32da2509489563ed401314c</sys_scope>
+        <sys_update_name>sp_instance_4be7979ec3652a509489563ed40131d8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-19 01:53:52</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=4be7979ec3652a509489563ed40131d8"/>
+</record_update>
