@@ -52,10 +52,6 @@
 		g_form.setDisplay('departement_manager', true);
 		g_form.setDisplay('additional_notes', true);
 	}
-	// else if (newValue == 6) {
-	// 	g_form.setDisplay('variable_9', true);
-	// 	g_form.setDisplay('variable_10', true);
-	// }
 }]]></script>
         <sys_class_name>catalog_script_client</sys_class_name>
         <sys_created_by>admin</sys_created_by>
@@ -63,7 +59,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>a5a85bdec3652a509489563ed4013109</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>7</sys_mod_count>
         <sys_name>Section Change</sys_name>
         <sys_overrides/>
         <sys_package display_value="Catalog Item-2 Demo" source="x_1755654_catalo_0">8ac2ddd5c32da2509489563ed401314c</sys_package>
@@ -71,7 +67,7 @@
         <sys_scope display_value="Catalog Item-2 Demo">8ac2ddd5c32da2509489563ed401314c</sys_scope>
         <sys_update_name>catalog_script_client_a5a85bdec3652a509489563ed4013109</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-19 05:05:18</sys_updated_on>
+        <sys_updated_on>2025-05-19 06:16:52</sys_updated_on>
         <table/>
         <type>onChange</type>
         <ui_type>10</ui_type>
