@@ -3,18 +3,30 @@
         <category>custom</category>
         <client_script><![CDATA[function ($scope) {
   /* widget client controller */
-
   var c = this;
-
-  function set(num) {
-    $scope.page.g_form.setValue('current_section', String(num));
+  
+  // Initialize currently selected item
+  c.currentSection = 1; // Applicant Info Page selected by default
+  
+  // Unified section configuration function
+  c.setSectionVisible = function(sectionNum) {
+    // Update the selected item
+    c.currentSection = sectionNum;
+    
+    // Set form field value
+    $scope.page.g_form.setValue('current_section', String(sectionNum));
+    
+    // Trigger AngularJS digest cycle
+    $scope.$applyAsync();
+  };
+  
+  // Read the current session from the form field during initialzation(optional)
+  if ($scope.page && $scope.page.g_form) {
+    var current = $scope.page.g_form.getValue('current_section');
+    if (current) {
+      c.currentSection = parseInt(current);
+    }
   }
-
-  c.setSection1Visible = function () { set(1); };
-  c.setSection2Visible = function () { set(2); };
-  c.setSection3Visible = function () { set(3); };
-  c.setSection4Visible = function () { set(4); };
-  c.setSection5Visible = function () { set(5); };
 }]]></client_script>
         <controller_as>c</controller_as>
         <css>.btn-breadcrumb .btn:not(:last-child):after {
@@ -67,10 +79,28 @@
   border-left: 10px solid #ccc;
 }
 .btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
-  border-left: 10px solid #ebebeb;
+  border-left: 10px solid #3498db;
 }
 .btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
-  border-left: 10px solid #adadad;
+  border-left: 10px solid #3498db;
+}
+
+/* Added active state styles */
+.btn-breadcrumb .btn.active {
+  background-color: #3498db;
+  color: white;
+}
+
+/* Modify arrow colors in active state */
+.btn-breadcrumb .btn.active:not(:last-child):after {
+  border-left: 10px solid #3498db;
+}
+.btn-breadcrumb .btn.active:not(:last-child):before {
+  border-left: 10px solid #2980b9;
+}
+/* Adjust hover state to prevent conflict with active state */
+.btn-breadcrumb .btn:not(.active):hover {
+  background-color: #f5f5f5;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data>{
@@ -100,22 +130,24 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-19 01:53:52</sys_created_on>
         <sys_id>f6e7975ec3652a509489563ed40131d4</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>43</sys_mod_count>
         <sys_name>Catalog Item-2 Section</sys_name>
         <sys_package display_value="Catalog Item-2 Demo" source="x_1755654_catalo_0">8ac2ddd5c32da2509489563ed401314c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Catalog Item-2 Demo">8ac2ddd5c32da2509489563ed401314c</sys_scope>
         <sys_update_name>sp_widget_f6e7975ec3652a509489563ed40131d4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-19 06:23:45</sys_updated_on>
+        <sys_updated_on>2025-05-26 15:14:53</sys_updated_on>
         <template><![CDATA[<div>
-  <div class="btn-group btn-breadcrumb" >
-    <a ng-click="c.setSection1Visible()" class="btn btn-default"><i class="glyphicon glyphicon-home"></i></a>
-    <a ng-click="c.setSection1Visible()" class="btn btn-default">Applicant Info</a>
-    <a ng-click="c.setSection2Visible()" class="btn btn-default">Equipment Selection</a>
-    <a ng-click="c.setSection3Visible()" class="btn btn-default">Software Requirements</a>
-    <a ng-click="c.setSection4Visible()" class="btn btn-default">Delivery Info</a>
-    <a ng-click="c.setSection5Visible()" class="btn btn-default">Approval Info</a>
+  <div class="btn-group btn-breadcrumb">
+    <a ng-click="c.setSectionVisible(0)" ng-class="{'active': c.currentSection === 0}" class="btn btn-default">
+      <i class="glyphicon glyphicon-home"></i>
+    </a>
+    <a ng-click="c.setSectionVisible(1)" ng-class="{'active': c.currentSection === 1}" class="btn btn-default">Applicant Info</a>
+    <a ng-click="c.setSectionVisible(2)" ng-class="{'active': c.currentSection === 2}" class="btn btn-default">Equipment Selection</a>
+    <a ng-click="c.setSectionVisible(3)" ng-class="{'active': c.currentSection === 3}" class="btn btn-default">Software Requirements</a>
+    <a ng-click="c.setSectionVisible(4)" ng-class="{'active': c.currentSection === 4}" class="btn btn-default">Delivery Info</a>
+    <a ng-click="c.setSectionVisible(5)" ng-class="{'active': c.currentSection === 5}" class="btn btn-default">Approval Info</a>
   </div>
 </div>]]></template>
     </sp_widget>
